@@ -1,0 +1,38 @@
+services:
+  articles:
+    build:
+      context: ./  # Set the context to the root of the monorepo
+      dockerfile: services/articles/Dockerfile  # Specify the Dockerfile path
+    ports:
+      - "3001:3000"
+    env_file:
+      - ./services/articles/.env  # Load the environment variables from the .env file
+    environment:
+      - NODE_ENV=development
+    command: ./scripts/start.sh --service articles --enable-package-watch true  # Run the start script with the articles workspace
+    volumes:
+      - ./:/app  # Mount the current directory to /app in the container
+
+  auth:
+    build:
+      context: ./  # Set the context to the root of the monorepo
+      dockerfile: services/auth/Dockerfile  # Specify the Dockerfile path
+    ports:
+      - "3002:3000"
+    env_file:
+      - ./services/auth/.env  # Load the environment variables from the .env file
+    environment:
+      - NODE_ENV=development
+    command: ./scripts/start.sh --service auth --enable-package-watch true
+    volumes:
+      - ./:/app  # Mount the current directory to /app in the container
+  
+  nginx:
+    image: nginx:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - articles
+      - auth
