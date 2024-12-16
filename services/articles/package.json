@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@auth0-nextjs-example/auth0-lib": "file:../packages/auth0-lib",
     "@auth0-nextjs-example/bff": "file:../packages/bff",
     "@auth0-nextjs-example/service-components": "file:../packages/service-components",
     "@auth0/nextjs-auth0": "^3.5.0",

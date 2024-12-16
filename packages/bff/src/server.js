@@ -3,9 +3,6 @@ import next from 'next';
 import path from 'path';
 import createRouter from './router';
 
-import { getAccessToken, getSession } from '@auth0/nextjs-auth0';
-
-
 const createServer = (serviceName, options = {}) => {
   const dev = process.env.NODE_ENV !== 'production';
   const dir = options.dir || path.join(__dirname, 'services', serviceName);
@@ -35,7 +32,7 @@ const createServer = (serviceName, options = {}) => {
 
     // Default Next.js handler
     server.all('*', async (req, res) => {
-      console.log('DEFAULT HANDLER CALLED!');      
+      // console.log('DEFAULT HANDLER CALLED!');      
 
       return handle(req, res);
     });

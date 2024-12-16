@@ -42,6 +42,7 @@ fi
 if [ "$ENABLE_PACKAGE_WATCH" != "false" ]; then
   npx nodemon --watch packages/service-components/src --ext js,jsx --exec "cd packages/service-components && npm run build" &
   npx nodemon --watch packages/bff/src --ext js --exec "cd packages/bff && npm run build" &
+  npx nodemon --watch packages/auth0-lib/src --ext js,jsx --exec "cd packages/auth0-lib && npm run build" &
 fi
 
 # Wait for all background processes to finish

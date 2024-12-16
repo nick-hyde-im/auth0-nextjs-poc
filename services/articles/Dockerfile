@@ -10,6 +10,9 @@ COPY package.json lerna.json ./
 # Copy the package.json of the articles service
 COPY services/articles/package.json services/articles/
 
+# Copy the package.json of the auth0-lib package service
+COPY packages/auth0-lib/package.json packages/auth0-lib/
+
 # Copy the package.json of the service-components package
 COPY packages/service-components/package.json packages/service-components/
 

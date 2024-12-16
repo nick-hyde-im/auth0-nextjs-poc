@@ -1,0 +1,19 @@
+{
+  "name": "@auth0-nextjs-example/auth0-lib",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src --out-dir dist --copy-files",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@auth0/nextjs-auth0": "^3.5.0",
+    "node-cache": "^5.1.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.17.0",
+    "@babel/core": "^7.17.0",
+    "@babel/preset-env": "^7.17.0",
+    "@babel/preset-react": "^7.16.7"
+  }
+}

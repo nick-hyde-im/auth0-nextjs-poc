@@ -1,4 +1,4 @@
-import { handleAuth, handleCallback, getAccessToken } from '@auth0/nextjs-auth0';
+import getAuth0Client from '@auth0-nextjs-example/auth0-lib';
 
 const afterCallback = (req, res, session, state) => {
   session.user.customProperty = 'foo';
@@ -10,19 +10,22 @@ const afterCallback = (req, res, session, state) => {
   return session;
 };
 
-export default handleAuth({
-  async callback(req, res) {
-    try {
-      await handleCallback(req, res, { afterCallback });
-    } catch (error) {
-      res.status(error.status || 500).end();
-    }
-  },
-  async proxy(req, res) {
-    const accessToken = await getAccessToken(req, res);
+export default async function auth(req, res) {
+  const siteKey = 'goodfood';
+  const auth0Client = getAuth0Client(siteKey);
 
-    console.log({ accessToken });
-  },
-});
+  return auth0Client.handleAuth({
+    async callback(req, res) {
+      try {
+        await auth0Client.handleCallback(req, res, { afterCallback });
+      } catch (error) {
+        res.status(error.status || 500).end();
+      }
+    },
+    async proxy(req, res) {
+      const accessToken = await auth0Client.getAccessToken(req, res);
 
-// export default handleAuth();
+      console.log({ accessToken });
+    },
+  })(req, res);
+};

@@ -10,6 +10,9 @@ COPY package.json lerna.json ./
 # Copy the package.json of the auth service
 COPY services/auth/package.json services/auth/
 
+# Copy the package.json of the auth0-lib package service
+COPY packages/auth0-lib/package.json packages/auth0-lib/
+
 # Install dependencies
 RUN npm install
 

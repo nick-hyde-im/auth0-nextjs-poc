@@ -1,6 +1,6 @@
 import React from 'react';
-import { getAccessToken, getSession } from '@auth0/nextjs-auth0';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0/client';
+import getAuth0Client from '@auth0-nextjs-example/auth0-lib';
 
 const Protected = ({ accessToken, user }) => {
   return (
@@ -23,7 +23,8 @@ const Protected = ({ accessToken, user }) => {
 };
 
 export const getServerSideProps = async ({ req, res }) => {
-  const { user } = await getSession(req, res) || {};
+  const auth0Client = getAuth0Client = getAuth0Client('goodfood');
+  const { user } = await auth0Client.getSession(req, res) || {};
 
   if (!user) {
     return {
@@ -34,7 +35,7 @@ export const getServerSideProps = async ({ req, res }) => {
     };
   }
 
-  const { accessToken } = await getAccessToken(req, res);
+  const { accessToken } = await auth0Client.getAccessToken(req, res);
 
   // Return the access token as a prop
   return {
