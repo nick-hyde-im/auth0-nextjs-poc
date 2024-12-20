@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "auth0-nextjs-poc",
   "private": true,
   "workspaces": [
     "packages/*",
