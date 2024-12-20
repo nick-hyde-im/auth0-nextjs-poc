@@ -1,24 +1,22 @@
-// services/articles/router.js
 import express from 'express';
 import { checkJwt } from '../middleware/authMiddleware';
 
 const createRouter = (serviceName) => {
   const router = express.Router();
 
-  // Define your API routes here
-  router.get('/custom-route', (req, res) => {
-    console.log('CUSTOM ROUTE CALLED 2');
-
-    return res.send(`This is a custom route for ${serviceName}`);
+  router.get('/example-get-endpoint', (req, res) => {
+    return res.json({ message: `This is an example bff endpoint for the ${serviceName} service that does not require user authorisation.` });
   });
 
-  router.get('/protected-route', checkJwt, (req, res) => {
-    console.log('PROTECTED ROUTE CALLED');
-
-    return res.send(`This is a protected route for ${serviceName}`);
+  router.get('/protected-get-endpoint', checkJwt, (req, res) => {
+    return res.json({ message: `This is a protected bff endpoint of the ${serviceName} service.` });
   });
 
-  // Add more routes as needed
+  router.post('/protected-post-endpoint', checkJwt, (req, res) => {
+    const { email } = req.body;
+
+    res.status(200).json({ message: `Form submitted successfully with email: ${email}` });
+  });
 
   return router;
 };

@@ -10,7 +10,7 @@ const Protected = () => {
 
   useEffect(() => {
     // Make a fetch request to localhost:3000/api/articles/protected-route
-    fetch('/api/articles/protected-route')
+    fetch('/api/auth/api/articles/protected-route')
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

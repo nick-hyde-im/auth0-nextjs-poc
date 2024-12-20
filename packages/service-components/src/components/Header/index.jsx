@@ -1,19 +1,22 @@
 import React from 'react';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
-const AuthBanner = () => {
+const Header = () => {
   const { user, error, isLoading } = useUser();
 
   return (
-    <div className="w-full px-5 py-2.5 bg-gray-800 flex justify-between items-center">
+    <header className="w-full px-5 py-2.5 bg-gray-800 flex justify-between items-center">
+      <div>
+        <a href="/auth" className="text-blue-500 hover:underline">Home</a>
+      </div>
       <div>
         {isLoading && <div className="text-gray-500">Loading...</div>}
         {error && <div className="text-red-500">{error.message}</div>}
-        {user && <div className="text-green-500">Welcome {user.name}!</div>}
-        {!user && <div className="text-gray-500">Not logged in</div>}
+        {user && <div className="text-white">Welcome {user.name}!</div>}
+        {(!user && !isLoading) && <div className="text-gray-500">Not logged in</div>}
       </div>
       <div>
-        {!user && (
+        {(!user && !isLoading) && (
           <a href="/api/auth/login" className="text-blue-500 hover:bg-blue-700 hover:text-white px-3 py-1 rounded">
             Login
           </a>
@@ -24,8 +27,8 @@ const AuthBanner = () => {
           </a>
         )}
       </div>
-    </div>
+    </header>
   );
 }
 
-export default AuthBanner;
+export default Header;

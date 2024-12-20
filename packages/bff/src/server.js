@@ -20,20 +20,18 @@ const createServer = (serviceName, options = {}) => {
   app.prepare().then(() => {
     const server = express();
 
-    // Create and use the router
     const router = createRouter(serviceName);
     const apiBasePath = options.apiBasePath || `/api/${serviceName}`;
 
-    server.use(apiBasePath, async (req, res, next) => {
-      console.log('ROUTER CALLED');
+    server.use(express.json({ limit: '10mb' }));
+    server.use(express.urlencoded({ extended: false }));
 
+    server.use(apiBasePath, async (req, res, next) => {
       next();
     }, router);
 
     // Default Next.js handler
     server.all('*', async (req, res) => {
-      // console.log('DEFAULT HANDLER CALLED!');      
-
       return handle(req, res);
     });
 

@@ -1,18 +1,30 @@
 import 'dotenv/config'; 
-import { GetVerificationKey, expressjwt as jwt } from 'express-jwt';
+import { expressjwt as jwt } from 'express-jwt';
 import jwksRsa from 'jwks-rsa';
+import { getAuth0Config } from '@auth0-nextjs-example/auth0-lib';
 
-const issuerBaseUrl = process.env.AUTH0_ISSUER_BASE_URL;
-const audience = process.env.AUTH0_AUDIENCE;
- 
-export const checkJwt = jwt({
-  secret: jwksRsa.expressJwtSecret({
-    cache: true,
-    rateLimit: true,
-    jwksRequestsPerMinute: 5,
-    jwksUri: `${issuerBaseUrl}/.well-known/jwks.json`,
-  }),
-  audience: audience,
-  issuer: `${issuerBaseUrl}/`,
-  algorithms: ['RS256'],
-});
+export const checkJwt = (req, res, next) => {
+  const siteKey = 'goodfood';
+  const auth0Config = getAuth0Config(siteKey);
+  const { audience, issuerBaseURL } = auth0Config;
+
+  const jwtMiddleware = jwt({
+    secret: jwksRsa.expressJwtSecret({
+      cache: true,
+      rateLimit: true,
+      jwksRequestsPerMinute: 5,
+      jwksUri: `${issuerBaseURL}/.well-known/jwks.json`,
+    }),
+    audience: audience,
+    issuer: `${issuerBaseURL}/`,
+    algorithms: ['RS256'],
+  });
+
+  jwtMiddleware(req, res, (err) => {
+    if (err) {
+      return res.status(401).json({ message: 'Unauthorized' });
+    }
+
+    next();
+  });
+};

@@ -13,6 +13,7 @@
     "@auth0-nextjs-example/auth0-lib": "file:../packages/auth0-lib",
     "@auth0-nextjs-example/service-components": "file:../packages/service-components",
     "next": "15.0.3",
+    "node-fetch": "^3.3.2",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
     "http-proxy": "^1.18.1"

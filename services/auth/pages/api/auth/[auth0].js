@@ -1,4 +1,4 @@
-import getAuth0Client from '@auth0-nextjs-example/auth0-lib';
+import { getAuth0Client } from '@auth0-nextjs-example/auth0-lib';
 
 const afterCallback = (req, res, session, state) => {
   session.user.customProperty = 'foo';
@@ -22,10 +22,18 @@ export default async function auth(req, res) {
         res.status(error.status || 500).end();
       }
     },
-    async proxy(req, res) {
-      const accessToken = await auth0Client.getAccessToken(req, res);
+    login: auth0Client.handleLogin({
+      authorizationParams: {
+        audience: 'http://localhost:3000/api',
+        scope: 'openid profile email offline_access',
+      }
+    }),
+    // async proxy(req, res) {
+    //   const accessToken = await auth0Client.getAccessToken(req, res);
 
-      console.log({ accessToken });
-    },
+    //   console.log({ accessToken });
+
+    //   res.status(200).json({ accessToken });
+    // },
   })(req, res);
 };
