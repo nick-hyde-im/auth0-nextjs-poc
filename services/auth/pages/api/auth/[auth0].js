@@ -28,12 +28,5 @@ export default async function auth(req, res) {
         scope: 'openid profile email offline_access',
       }
     }),
-    // async proxy(req, res) {
-    //   const accessToken = await auth0Client.getAccessToken(req, res);
-
-    //   console.log({ accessToken });
-
-    //   res.status(200).json({ accessToken });
-    // },
   })(req, res);
 };

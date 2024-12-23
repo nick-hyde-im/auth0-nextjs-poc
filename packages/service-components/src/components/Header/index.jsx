@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header className="w-full px-5 py-2.5 bg-gray-800 flex justify-between items-center">
       <div>
-        <a href="/auth" className="text-blue-500 hover:underline">Home</a>
+        <a href="/" className="text-blue-500 hover:underline">Home</a>
       </div>
       <div>
         {isLoading && <div className="text-gray-500">Loading...</div>}

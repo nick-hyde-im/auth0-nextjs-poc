@@ -25,7 +25,10 @@ To start the project using Docker, follow these steps:
     cd <repository-directory>
     ```
 
-3. **Build and Start the Services**: Use Docker Compose to build and start the services.
+3. **Configure the .env file**: Run `cp .sample.env .env` to generate your environment file in the root project directory, and update the `AUTH0_CONFIG` object.
+4. See [Additional Information](#additional-information) below for more details.
+
+5. **Build and Start the Services**: Use Docker Compose to build and start the services.
 
     ```sh
     docker-compose up --build
@@ -33,7 +36,9 @@ To start the project using Docker, follow these steps:
 
     This command will build the Docker images for each service and start the containers.
 
-4. **Access the Services**:
+6. **Access the Services**:
+7. Go to [http://localhost:3000](http://localhost:3000) to navigate to the homepage. The articles service is designed to serve application pages, while the auth service handles api endpoints for login, logout, profile and auth proxy requests to the bff server endpoints.
+However each service is exposed on their own ports and can be accessed independently:
     - Articles service: Open [http://localhost:3001](http://localhost:3001) in your browser.
     - Auth service: Open [http://localhost:3002](http://localhost:3002) in your browser.
 

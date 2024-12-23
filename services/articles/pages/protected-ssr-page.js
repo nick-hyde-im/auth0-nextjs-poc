@@ -28,7 +28,7 @@ export const getServerSideProps = withSSRPageAuthRequired({
       },
     };
   },
-  returnTo: '/articles',
+  returnTo: '/',
 });
 
 export default ProtectedSSRPage;

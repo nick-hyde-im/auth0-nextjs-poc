@@ -16,11 +16,10 @@ const SiteDirectory = () => {
       <table className="table-auto w-full text-left border-collapse border border-gray-200">
         <tbody>
           {[
-            { href: "/auth", description: "The auth frontend service homepage." },
-            { href: "/articles", description: "The articles frontend service homepage." },
-            { href: "/articles/protected-ssr-page", description: "A protected server side rendered page." },
-            { href: "/articles/protected-csr-page", description: "A protected client side rendered page." },
-            { href: "/articles/protected-form", description: "A form example that posts to a protected bff endpoint." },
+            { href: "/", description: "The frontend service homepage." },
+            { href: "/protected-ssr-page", description: "A protected server side rendered page." },
+            { href: "/protected-csr-page", description: "A protected client side rendered page." },
+            { href: "/protected-form", description: "A form example that posts to a protected bff endpoint." },
             { href: "/api/articles/example-get-endpoint", description: "A public bff get endpoint." },
             { href: "/api/articles/protected-get-endpoint", description: "A protected bff get endpoint. This will fail as it's not going via the auth proxy and doesn't include an Authorization header." },
             { href: "/api/auth/api/articles/protected-get-endpoint", description: "A protected bff endpoint example - via an auth proxy endpoint." },

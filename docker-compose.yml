@@ -6,7 +6,7 @@ services:
     ports:
       - "3001:3000"
     env_file:
-      - ./services/articles/.env  # Load the environment variables from the .env file
+      - ./.env  # Load the environment variables from the .env file
     environment:
       - NODE_ENV=development
     command: ./scripts/start.sh --service articles --enable-package-watch true  # Run the start script with the articles workspace
@@ -20,7 +20,7 @@ services:
     ports:
       - "3002:3000"
     env_file:
-      - ./services/auth/.env  # Load the environment variables from the .env file
+      - ./.env  # Load the environment variables from the .env file
     environment:
       - NODE_ENV=development
     command: ./scripts/start.sh --service auth --enable-package-watch true
