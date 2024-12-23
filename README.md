@@ -44,9 +44,9 @@ However each service is exposed on their own ports and can be accessed independe
 
 ## Additional Information
 
-- **Environment Variables**: Ensure you have the necessary environment variables set up in the `.env` files located in the respective service directories (`services/articles/.env` and [.env](http://_vscodecontentref_/0)).
+- **Environment Variables**: Ensure you have the necessary environment variables set up in the `.env` file located in the root of the project.
 
-### Example AUTH0_CONFIG Object
+**Example `AUTH0_CONFIG` Object**
 
 Here is an example of the `AUTH0_CONFIG` object required to setup each Auth0 client:
 
@@ -62,6 +62,7 @@ Here is an example of the `AUTH0_CONFIG` object required to setup each Auth0 cli
   }
 }
 ```
+**Note:** The sitekey used is currently hardcoded to 'goodfood'.
 
 - **Scripts**: The [start.sh](http://_vscodecontentref_/1) script is used to start the services with specific configurations.
 
