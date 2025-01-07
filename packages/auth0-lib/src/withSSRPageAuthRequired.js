@@ -1,12 +1,8 @@
 import getAuth0Client from './getAuth0Client';
+import { DEFAULT_SITE_KEY } from './constants.js';
 
 const withSSRPageAuthRequired = ({ getServerSideProps, returnTo }) => async (ctx) => {
-  // Adjust this to get the siteKey from a call to the site config bff endpoint
-  const siteKey = 'goodfood'; 
-  const auth0Client = getAuth0Client(siteKey);
-
-  console.log('withSSRPageAuthRequired', ctx.resolvedUrl);
-  console.log('returnTo', returnTo);
+  const auth0Client = getAuth0Client(DEFAULT_SITE_KEY);
 
   return auth0Client.withPageAuthRequired({
     getServerSideProps: async (ctx) => {

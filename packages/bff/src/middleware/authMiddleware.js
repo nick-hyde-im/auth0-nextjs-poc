@@ -1,11 +1,10 @@
 import 'dotenv/config'; 
 import { expressjwt as jwt } from 'express-jwt';
 import jwksRsa from 'jwks-rsa';
-import { getAuth0Config } from '@auth0-nextjs-example/auth0-lib';
+import { DEFAULT_SITE_KEY, getAuth0Config } from '@auth0-nextjs-example/auth0-lib';
 
 export const checkJwt = (req, res, next) => {
-  const siteKey = 'goodfood';
-  const auth0Config = getAuth0Config(siteKey);
+  const auth0Config = getAuth0Config(DEFAULT_SITE_KEY);
   const { audience, issuerBaseURL } = auth0Config;
 
   const jwtMiddleware = jwt({

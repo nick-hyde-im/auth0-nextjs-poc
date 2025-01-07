@@ -1,9 +1,8 @@
 import fetch from 'node-fetch';
-import { getAuth0Client } from '@auth0-nextjs-example/auth0-lib';
+import { DEFAULT_SITE_KEY, getAuth0Client } from '@auth0-nextjs-example/auth0-lib';
 
 const getAccessToken = async (req, res) => {
-  const siteKey = 'goodfood';
-  const auth0Client = getAuth0Client(siteKey);
+  const auth0Client = getAuth0Client(DEFAULT_SITE_KEY);
 
   try {
     const accessToken = await auth0Client.getAccessToken(req, res);

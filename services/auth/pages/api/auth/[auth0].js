@@ -1,4 +1,4 @@
-import { getAuth0Client } from '@auth0-nextjs-example/auth0-lib';
+import { DEFAULT_SITE_KEY, getAuth0Client } from '@auth0-nextjs-example/auth0-lib';
 
 const afterCallback = (req, res, session, state) => {
   session.user.customProperty = 'foo';
@@ -11,8 +11,7 @@ const afterCallback = (req, res, session, state) => {
 };
 
 export default async function auth(req, res) {
-  const siteKey = 'goodfood';
-  const auth0Client = getAuth0Client(siteKey);
+  const auth0Client = getAuth0Client(DEFAULT_SITE_KEY);
 
   return auth0Client.handleAuth({
     async callback(req, res) {
