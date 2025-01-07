@@ -20,6 +20,7 @@ const SiteDirectory = () => {
             { href: "/protected-ssr-page", description: "A protected server side rendered page." },
             { href: "/protected-csr-page", description: "A protected client side rendered page." },
             { href: "/protected-form", description: "A form example that posts to a protected bff endpoint." },
+            { href: "/protected-static-js", description: "A page that loads a custom static JavaScript file." },
             { href: "/api/articles/example-get-endpoint", description: "A public bff get endpoint." },
             { href: "/api/articles/protected-get-endpoint", description: "A protected bff get endpoint. This will fail as it's not going via the auth proxy and doesn't include an Authorization header." },
             { href: "/api/auth/api/articles/protected-get-endpoint", description: "A protected bff endpoint example - via an auth proxy endpoint." },
