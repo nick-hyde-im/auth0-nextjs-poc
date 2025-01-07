@@ -1,6 +1,13 @@
 import React from 'react';
 import { useUser } from '@auth0/nextjs-auth0/client';
 
+const AuthButton = ({ href, children }) => (
+  <a href={href} className="text-blue-500 hover:bg-blue-700 hover:text-white px-3 py-1 rounded">
+    {children}
+  </a>
+);
+
+
 const Header = () => {
   const { user, error, isLoading } = useUser();
 
@@ -17,14 +24,22 @@ const Header = () => {
       </div>
       <div>
         {(!user && !isLoading) && (
-          <a href="/api/auth/login" className="text-blue-500 hover:bg-blue-700 hover:text-white px-3 py-1 rounded">
-            Login
-          </a>
+          <>
+            <AuthButton href="/api/auth/signup">Signup</AuthButton>
+            <AuthButton href="/api/auth/login">Login</AuthButton>
+            {/* <a href="/api/auth/signup" className="text-blue-500 hover:bg-blue-700 hover:text-white px-3 py-1 rounded">
+              Signup
+            </a>
+            <a href="/api/auth/login" className="text-blue-500 hover:bg-blue-700 hover:text-white px-3 py-1 rounded">
+              Login
+            </a> */}
+          </>
         )}
         {user && (
-          <a href="/api/auth/logout" className="text-blue-500 hover:bg-blue-700 hover:text-white px-3 py-1 rounded ml-4">
-            Logout
-          </a>
+          <AuthButton href="/api/auth/logout">Logout</AuthButton>
+          // <a href="/api/auth/logout" className="text-blue-500 hover:bg-blue-700 hover:text-white px-3 py-1 rounded ml-4">
+          //   Logout
+          // </a>
         )}
       </div>
     </header>

@@ -1,4 +1,5 @@
 import React from 'react';
+import Table from '../Table';
 
 const ProfileCard = ({ user }) => {
   const userInfo = [
@@ -15,16 +16,7 @@ const ProfileCard = ({ user }) => {
       <div className="text-2xl font-bold mb-4">
         User Profile
       </div>
-      <table className="table-auto w-full text-left border-collapse border border-gray-200">
-        <tbody>
-          {userInfo.map((info, index) => (
-            <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : 'bg-white'}>
-              <td className="border border-gray-200 p-2 font-bold">{info.label}</td>
-              <td className="border border-gray-200 p-2">{info.value}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <Table data={userInfo} />
     </div>
   );
 }
