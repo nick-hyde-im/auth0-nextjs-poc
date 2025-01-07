@@ -14,8 +14,12 @@ const createRouter = (serviceName) => {
 
   router.post('/protected-post-endpoint', checkJwt, (req, res) => {
     const { email } = req.body;
+    const user = req.auth;
 
-    res.status(200).json({ message: `Form submitted successfully with email: ${email}` });
+    res.status(200).json({
+      message: `Form submitted successfully with email: ${email}`,
+      user: user || null,
+    });
   });
 
   return router;
