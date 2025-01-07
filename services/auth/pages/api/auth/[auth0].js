@@ -27,5 +27,10 @@ export default async function auth(req, res) {
         scope: 'openid profile email offline_access',
       }
     }),
+    signup: auth0Client.handleLogin({
+      authorizationParams: {
+        screen_hint: 'signup',
+      },
+    }),
   })(req, res);
 };
