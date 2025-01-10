@@ -1,7 +1,9 @@
 import React from 'react';
 
-const Button = ({ children, onClick }) => (
-  <button onClick={onClick} className="px-4 py-2 bg-blue-500 text-white">
+const DEFAULT_CLASSNAME = 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline';
+
+const Button = ({ children, className, ...restProps }) => (
+  <button className={className || DEFAULT_CLASSNAME} {...restProps}>
     {children}
   </button>
 );

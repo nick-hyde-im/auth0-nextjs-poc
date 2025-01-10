@@ -5,35 +5,48 @@ const getAccessToken = async (req, res) => {
   const auth0Client = getAuth0Client(DEFAULT_SITE_KEY);
 
   try {
-    const accessToken = await auth0Client.getAccessToken(req, res);
+    const { accessToken } = await auth0Client.getAccessToken(req, res);
 
     return accessToken;
   } catch (error) {
     console.error(error);
 
-    return { accessToken: null };
+    return null;
+  }
+}
+
+const getRefreshToken = async (req, res) => {
+  const auth0Client = getAuth0Client(DEFAULT_SITE_KEY);
+
+  try {
+    const session = await auth0Client.getSession(req, res);
+
+    const { refreshToken } = session.user;
+
+    return refreshToken;
+  } catch (error) {
+    console.error(error);
+
+    return null;
   }
 }
 
 export default async function handler(req, res) {
-  const { accessToken } = await getAccessToken(req, res);
-
-  if (!accessToken) {
-    res.status(401).json({
-      message: 'Unauthorized',
-    });
-
-    return;
-  }
+  const accessToken = await getAccessToken(req, res);
+  const refreshToken = await getRefreshToken(req, res);
 
   const { path } = req.query;
   const url = `http://articles:3000/api/${path.join('/')}`;
 
   const method = req.method;
   const headers = {
-    Authorization: `Bearer ${accessToken}`,
     'Content-Type': 'application/json',
   };
+
+  if (accessToken) {
+    headers.Authorization = `Bearer ${accessToken}`;
+  }
+
   const body = req.method !== 'GET' && req.method !== 'HEAD' ? JSON.stringify(req.body) : undefined;
 
   const response = await fetch(url, {

@@ -2,6 +2,10 @@
   "name": "@auth0-nextjs-example/auth0-lib",
   "version": "0.0.0",
   "main": "dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./client": "./dist/client/index.js"
+  },
   "scripts": {
     "build": "babel src --out-dir dist --copy-files",
     "prepublishOnly": "npm run build"

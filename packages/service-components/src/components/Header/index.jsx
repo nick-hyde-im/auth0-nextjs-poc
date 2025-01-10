@@ -7,7 +7,6 @@ const AuthButton = ({ href, children }) => (
   </a>
 );
 
-
 const Header = () => {
   const { user, error, isLoading } = useUser();
 

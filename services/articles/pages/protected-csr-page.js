@@ -1,8 +1,10 @@
 import React from 'react';
-import { withCSRPageAuthRequired } from '@auth0-nextjs-example/auth0-lib';
+import { useUser, withCSRPageAuthRequired } from '@auth0-nextjs-example/auth0-lib/client';
 import { ProfileCard } from '@auth0-nextjs-example/service-components';
 
 const ProtectedCSRPage = ({ user }) => {
+  const { user: userFromHook } = useUser();
+
   return (
     <div>
       <h1 className="text-4xl font-bold text-center mt-8 mb-4 text-gray-800">
@@ -14,7 +16,9 @@ const ProtectedCSRPage = ({ user }) => {
         which wraps the page component. This automatically adds a user object to the page props, where this user object has been obtained via 
         the client-side React Hook <code>useUser</code>.
       </p>
-      <ProfileCard user={user} />
+      <ProfileCard heading="User from withPageAuthRequired higher order component (HOC)" user={user} />
+      <br />
+      <ProfileCard heading="User from useUser React Hook" user={userFromHook} />
     </div>
   );
 };

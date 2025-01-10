@@ -48,12 +48,9 @@ export default function ProtectedForm() {
             {message}
           </p>
           <br />
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            onClick={() => setSubmitted(false)}
-          >
+          <Button onClick={() => setSubmitted(false)}>
             Retry
-          </button>
+          </Button>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
@@ -70,12 +67,9 @@ export default function ProtectedForm() {
             />
           </div>
           <div className="flex items-center justify-between">
-            <button
-              type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            >
+            <Button type="submit">
               Submit
-            </button>
+            </Button>
           </div>
         </form>
       )}

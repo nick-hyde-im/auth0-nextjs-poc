@@ -11,10 +11,10 @@ const ProtectedSSRPage = ({ message, user, isLoggedIn, idToken }) => {
       <p className="my-4 text-center" dangerouslySetInnerHTML={{ __html: message }}></p>
       <p className="my-4 text-center">
         The user profile below is only visible to authenticated users. The user data has been
-        injected into the page via a server-side version of the <code>withPageAuthRequired</code> HOC component provided by the Next.js Auth0 SDK,
+        injected into the page via a server-side version of the <code>withPageAuthRequired</code> HOF function provided by the Next.js Auth0 SDK,
         which wraps the <code>getServerSideProps</code> function of the page.
       </p>
-      <ProfileCard user={user} />
+      <ProfileCard heading="User from withPageAuthRequired higher order function (HOF)" user={user} />
       <p className="my-4 text-center">
         The following parameters have been injected into the page via the <code>getServerSideProps</code> function, 
         having been dervied from the <code>getSession</code> function of the active Auth0 client instance:

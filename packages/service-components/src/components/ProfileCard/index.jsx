@@ -1,7 +1,7 @@
 import React from 'react';
 import Table from '../Table';
 
-const ProfileCard = ({ user }) => {
+const ProfileCard = ({ heading, user }) => {
   const userInfo = [
     { label: 'Name', value: user.name },
     { label: 'Email', value: user.email },
@@ -14,7 +14,7 @@ const ProfileCard = ({ user }) => {
   return (
     <div className="p-4 rounded-lg shadow-lg">
       <div className="text-2xl font-bold mb-4">
-        User Profile
+        {heading}
       </div>
       <Table data={userInfo} />
     </div>

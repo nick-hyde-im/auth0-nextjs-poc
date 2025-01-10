@@ -3,6 +3,9 @@ import { DEFAULT_SITE_KEY, getAuth0Client } from '@auth0-nextjs-example/auth0-li
 const afterCallback = (req, res, session, state) => {
   session.user.customProperty = 'foo';
 
+  console.log('session:', session);
+  console.log('state:', state);
+
   // Note: This works, but isn't the secure option we want.
   // const { accessToken } = session;
   // res.setHeader('Set-Cookie', `access_token=${accessToken}; path=/; httponly; samesite=lax; secure;`);
@@ -24,7 +27,7 @@ export default async function auth(req, res) {
     login: auth0Client.handleLogin({
       authorizationParams: {
         audience: 'http://localhost:3000/api',
-        scope: 'openid profile email offline_access',
+        scope: 'openid profile email offline_access', // offline_access needed for refresh token
       }
     }),
     signup: auth0Client.handleLogin({
