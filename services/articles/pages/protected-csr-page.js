@@ -23,4 +23,12 @@ const ProtectedCSRPage = ({ user }) => {
   );
 };
 
+export async function getStaticProps() {
+  return {
+    props: {
+      title: 'Protected Client Side Rendered (CSR) Page',
+    },
+  };
+}
+
 export default withCSRPageAuthRequired(ProtectedCSRPage);

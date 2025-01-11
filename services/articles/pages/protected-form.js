@@ -1,7 +1,7 @@
 import { Button } from '@auth0-nextjs-example/service-components';
 import { useState } from 'react';
 
-export default function ProtectedForm() {
+const ProtectedForm = () => {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [message, setMessage] = useState('');
@@ -75,4 +75,14 @@ export default function ProtectedForm() {
       )}
     </div>
   );
+};
+
+export async function getStaticProps() {
+  return {
+    props: {
+      title: 'Protected Form',
+    },
+  };
 }
+
+export default ProtectedForm;

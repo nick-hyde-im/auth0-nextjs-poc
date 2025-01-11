@@ -2,7 +2,7 @@ import React from 'react';
 import { DEFAULT_SITE_KEY, getAuth0Client, withSSRPageAuthRequired } from '@auth0-nextjs-example/auth0-lib';
 import { ProfileCard, Table } from '@auth0-nextjs-example/service-components';
 
-const ProtectedSSRPage = ({ message, user, isLoggedIn, idToken }) => {
+const ProtectedSSRPage = ({ idToken, isLoggedIn, message, user }) => {
   return (
     <div>
       <h1 className="text-4xl font-bold text-center mt-8 mb-4 text-gray-800">
@@ -40,9 +40,10 @@ export const getServerSideProps = withSSRPageAuthRequired({
 
     return {
       props: {
-        message: 'This message comes from a prop that has been returned by a protected <code>getServerSideProps</code> function.',
-        isLoggedIn,
         idToken,
+        isLoggedIn,
+        message: 'This message comes from a prop that has been returned by a protected <code>getServerSideProps</code> function.',
+        title: 'Protected SSR Page',
       },
     };
   },

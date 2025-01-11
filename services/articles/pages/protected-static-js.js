@@ -32,5 +32,13 @@ const ProtectedStaticJs = () => {
   )
 }
 
+export async function getStaticProps() {
+  return {
+    props: {
+      title: 'Protected Static JS Page',
+    },
+  };
+}
+
 export default ProtectedStaticJs;
 
